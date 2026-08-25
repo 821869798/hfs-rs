@@ -1,0 +1,54 @@
+[package]
+name = "hfs-rs"
+version = "0.1.0"
+edition = "2024"
+description = "HTTP File Server rewritten in Rust with GPUI (HFS2-compatible goals)"
+authors = ["hfs-rs"]
+license = "MIT"
+readme = "README.md"
+default-run = "hfs-rs"
+
+[dependencies]
+anyhow = "1"
+futures-util = "0.3"
+futures-core = "0.3"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+parking_lot = "0.12"
+rfd = "0.17"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+bytes = "1"
+http-body-util = "0.1"
+http = "1"
+hyper = { version = "1", features = ["server", "http1"] }
+hyper-util = { version = "0.1", features = ["tokio", "server-auto", "server-graceful"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "fs", "io-util", "sync", "time", "signal"] }
+tokio-util = { version = "0.7", features = ["io"] }
+mime_guess = "2"
+multer = "3"
+base64 = "0.22"
+percent-encoding = "2"
+url = "2"
+uuid = { version = "1", features = ["v4"] }
+tracing = "0.1"
+open = "5"
+arboard = "3"
+
+unicode-segmentation = "1.12"
+
+# UI - GPUI community edition (pinned to stable rev)
+gpui = { git = "https://github.com/gpui-ce/gpui-ce", rev = "c738623ffbcec2aeddc44a645cc6b74646d5cf97" }
+gpui_platform = { git = "https://github.com/gpui-ce/gpui-ce", rev = "c738623ffbcec2aeddc44a645cc6b74646d5cf97" }
+gpui_elements = { git = "https://github.com/gpui-ce/gpui-ce", rev = "c738623ffbcec2aeddc44a645cc6b74646d5cf97" }
+
+[dev-dependencies]
+tempfile = "3"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "fs", "io-util", "sync", "time"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+strip = true

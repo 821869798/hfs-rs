@@ -1,0 +1,25 @@
+# Compiled files
+/target/
+
+# IDE
+.idea/
+.vscode/
+.commandcode/
+*.swp
+*.user
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local runtime
+*.log
+hfs-rs.json
+*.vfs.json
+
+# Reference clones (if placed inside)
+/hfs2-ref/
+
+cargo-*.out
+cargo-*.err
